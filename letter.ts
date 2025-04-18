@@ -31,7 +31,7 @@ export class Letter{
         this.letter = fs.readFileSync('./BaseLetter.txt').toString();
     }
 
-    public createCoverLetter(){
+    public createCoverLetter(): string{
         const regex = /\$C|\$D|\$P|\$R|\$M/gi
         const match = this.matchers
       const coverLetter = this.letter.replace(regex, function replace(matched:string){
@@ -39,13 +39,6 @@ export class Letter{
       });
 
       return coverLetter;
-    //   fs.writeFile(`letters/${this.matchers.$P} ${this.matchers.$C}`, coverLetter, (err)=>{
-        
-    //     err && console.log(err);
-    //     if(!err){
-    //         console.log("File written successfully"); 
-    //     }
-    //   })
     }
 
 

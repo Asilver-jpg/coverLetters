@@ -1,6 +1,5 @@
 import {docs_v1, google} from 'googleapis'
 import {GoogleAuth} from 'google-auth-library'
-import { text } from 'stream/consumers';
 
 export interface DocFunctionality {
   content: string;
@@ -44,18 +43,17 @@ export class GoogleDocs{
                   const link = textRun.textStyle.link;
                   return {
                     content: content,
-                    link: link, // Contains the URL of the hyperlink
+                    link: link, 
                     style: {
                       fontFamily: textRun.textStyle?.weightedFontFamily?.fontFamily || "Arial", 
-                      fontSize: textRun.textStyle.fontSize ? textRun.textStyle.fontSize.magnitude : 9, // Default size
+                      fontSize: textRun.textStyle.fontSize ? textRun.textStyle.fontSize.magnitude : 9, 
                       bold: textRun.textStyle.bold || false,
                       italic: textRun.textStyle.italic || false,
                       underline: textRun.textStyle.underline || false,
-                      // You can capture color or other properties if needed
                     },
                   };
                 }
-              }).filter(Boolean); // Filter out any undefined values
+              }).filter(Boolean);
             }
           }).flat(); 
     }
@@ -66,39 +64,39 @@ export class GoogleDocs{
     public async copyContentToNewDoc(newDocId:string, content: DocFunctionality[]){
         let index = 1
         const doc = await this.docs.documents.get({ documentId: newDocId });
-    if(doc){
-      const requests: docs_v1.Schema$Request[] = []
-      content.forEach((textElement)=>{
-          if(textElement === undefined){
-            return
-          }
-            requests.push({
-                insertText:{
-                    location:{index},
-                    text: textElement.content === "\\n" ? "\n" : textElement.content
-                }
-            });
-            requests.push({
-                updateTextStyle:{
-                    range:{
-                        startIndex: index,
-                        endIndex: index + textElement.content.length
-                    },
-                    textStyle: {
-                      weightedFontFamily:{
-                        fontFamily: textElement.style.fontFamily,
-                      },
-                      fontSize:{
-                        magnitude: textElement.style.fontSize,
-                        unit:'PT'
-                      },
-                      
-                        bold: textElement.style.bold,
-                        italic: textElement.style.italic,
-                        underline: textElement.style.underline,
-                      },
-                      fields:  "weightedFontFamily,bold,italic,underline,fontSize",
-                    },
+        if(doc){
+          const requests: docs_v1.Schema$Request[] = []
+          content.forEach((textElement)=>{
+              if(textElement === undefined){
+                return
+              }
+                requests.push({
+                    insertText:{
+                        location:{index},
+                        text: textElement.content === "\\n" ? "\n" : textElement.content
+                    }
+                });
+                requests.push({
+                    updateTextStyle:{
+                        range:{
+                            startIndex: index,
+                            endIndex: index + textElement.content.length
+                        },
+                        textStyle: {
+                          weightedFontFamily:{
+                            fontFamily: textElement.style.fontFamily,
+                          },
+                          fontSize:{
+                            magnitude: textElement.style.fontSize,
+                            unit:'PT'
+                          },
+                          
+                            bold: textElement.style.bold,
+                            italic: textElement.style.italic,
+                            underline: textElement.style.underline,
+                          },
+                          fields:  "weightedFontFamily,bold,italic,underline,fontSize",
+                        },
                 });
                 if (textElement.link) {
                     requests.push({
@@ -119,12 +117,12 @@ export class GoogleDocs{
                   index += textElement.content.length;
 
             });
-        await this.docs.documents.batchUpdate({
-            documentId: newDocId,
-            requestBody: {requests}
-        })
+          await this.docs.documents.batchUpdate({
+              documentId: newDocId,
+              requestBody: {requests}
+          })
       }else{
-        console.log("No file fdound")
+        console.log("No file found")
       }
         
       }

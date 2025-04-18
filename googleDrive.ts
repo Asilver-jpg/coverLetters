@@ -17,7 +17,7 @@ export class GoogleDrive{
         this.drive =  google.drive({version:"v3", auth: authClient})
     }
 
-    public async createFile(name:string){
+    public async createFile(name:string):Promise<string>{
         try{
        const file = await this.drive.files.copy({
            fileId: process.env.TEMPLATE_GOOGLE_DOC_ID,
