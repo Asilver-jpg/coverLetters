@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "outDir": "./built",
+    "allowJs": true,
+    "target": "es6",
+    "module": "CommonJS"
+  },
+  "files": ["index.ts", "letter.ts"]
+}

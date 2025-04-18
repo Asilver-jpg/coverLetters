@@ -1,0 +1,19 @@
+Dear $C $R,
+
+As a software engineer with two years of experience, I am excited to apply for the $P position at $C. $D. With these points in mind, I strongly identify with $C's mission to help empower patients and I am confident that my skills and experience will benefit your company.
+
+At Peer Supply, I built a custom Elasticsearch-based search engine for healthcare products, enabling users to discover inventory across different health systems. I also automated daily data imports with Airflow, ensuring inventory and approval processes remained up-to-date. Additionally, I optimized key query performance  by over 98%—cutting response times from 20 seconds to just 0.36 seconds. These experiences strengthened my ability to deliver scalable, high-performance backend systems.
+
+Previously at Bundlefi, I contributed to both feature development and platform maintenance using Next.js, TypeScript, GraphQL, and Node. When the company underwent a rebrand, I helped re-architect the 8-year-old system using Vue, Node, and PostgreSQL, successfully delivering a new MVP and corporate site within five months.
+
+Additionally, through my employment as the sole front end software engineer at Unshut, I created and assisted in the design of all of Unshut’s front facing applications. These included a home page that dynamically changes over time, a virtual file server that deletes itself over time, and a step-by-step meditation that is fully voiced with dynamic animations based on the frequency of those voice lines. In all of these projects, I had to overcome unconventional challenges with creative solutions.
+
+At Logie, I built backend features for Amazon Live streamers, including a product recommendation algorithm, admin user tools, and role-based permissions. My focus is always on building robust systems that serve real user needs with clarity and efficiency.
+
+Across all my roles, I’ve adapted quickly, learned new technologies independently, and delivered thoughtful, high-impact solutions. I’m eager to bring that same energy and dedication to $C's engineering team.
+
+Thank you for considering my application—I’d love the opportunity to discuss how I can contribute to $C's mission.
+
+Sincerely,
+
+Alex Silver
