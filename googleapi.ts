@@ -1,6 +1,5 @@
 import 'dotenv/config'
 import {GoogleAuth} from 'google-auth-library'
-import { google, docs_v1 } from 'googleapis';
 export class GoogleApis{
 
 public client;

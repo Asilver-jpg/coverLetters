@@ -17,18 +17,7 @@ export class GoogleDrive{
         this.drive =  google.drive({version:"v3", auth: authClient})
     }
 
-    public async createFile(name:string):Promise<string>{
-        try{
-       const file = await this.drive.files.copy({
-           fileId: process.env.TEMPLATE_GOOGLE_DOC_ID,
-       requestBody:{
-           name: name,
-        },
-       fields: 'id'
-        })
-        const fileId = file.data.id
-        console.log(`File Created with ID: ${fileId}`)
-
+    private async providePermissions(fileId: string){
         await this.drive.permissions.create({
             fileId,
             requestBody:{
@@ -37,11 +26,32 @@ export class GoogleDrive{
                 emailAddress: process.env.USER_EMAIL
             }
         })
-        return fileId;
+    }
+
+    public async createFile(name:string):Promise<string>{
+        try{
+            const file = await this.drive.files.copy({
+                fileId: process.env.TEMPLATE_GOOGLE_DOC_ID,
+            requestBody:{
+                name: name,
+                },
+            fields: 'id'
+                })
+            const fileId = file.data.id
+            console.log(`File Created with ID: ${fileId}`)
+            await this.providePermissions(fileId)
+            return fileId;
     }catch(error){
-        console.error('Error:', error.message);
+        const file = await this.drive.files.create({ 
+                requestBody:{
+                name: name,
+                },
+            fields: 'id'
+        })
+        const fileId = file.data.id
+        console.log(`File Created with ID: ${fileId}`)
+        await this.providePermissions(fileId)
+        return fileId
+        }
     }
-    }
-
-
 }
