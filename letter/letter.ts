@@ -31,11 +31,11 @@ export class Letter{
         this.letter = fs.readFileSync('./BaseLetter.txt').toString();
     }
 
-    public createCoverLetter(): string{
+    public createCoverLetter(){
         const regex = /\$C|\$D|\$P|\$R|\$M/gi
         const match = this.matchers
       const coverLetter = this.letter.replace(regex, function replace(matched:string){
-        return match[matched]
+        return match[matched as keyof Matchers] ?? ''
       });
 
       return coverLetter;

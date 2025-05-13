@@ -1,10 +1,10 @@
-import { GoogleAuth } from "google-auth-library"
+import { GoogleAuth, JWT } from "google-auth-library"
 import { drive_v3, google } from "googleapis"
 import 'dotenv/config'
 
 export class GoogleDrive{
     private auth
-    public drive:drive_v3.Drive
+    public drive:drive_v3.Drive | undefined
     constructor(){
         this.auth = new GoogleAuth({
             keyFile: process.env.GOOGLE_APPLICATION_CREDS,
@@ -14,10 +14,11 @@ export class GoogleDrive{
 
     public async initialize(){
         const authClient = await this.auth.getClient()
-        this.drive =  google.drive({version:"v3", auth: authClient})
+        this.drive =  google.drive({version:"v3", auth: authClient as JWT})
     }
 
     private async providePermissions(fileId: string){
+        if(!this.drive) return
         await this.drive.permissions.create({
             fileId,
             requestBody:{
@@ -28,7 +29,9 @@ export class GoogleDrive{
         })
     }
 
-    public async createFile(name:string):Promise<string>{
+    public async createFile(name:string):Promise<string | null | undefined>{
+        if(!this.drive) return
+
         try{
             const file = await this.drive.files.copy({
                 fileId: process.env.TEMPLATE_GOOGLE_DOC_ID,
@@ -39,7 +42,7 @@ export class GoogleDrive{
                 })
             const fileId = file.data.id
             console.log(`File Created with ID: ${fileId}`)
-            await this.providePermissions(fileId)
+            fileId && await this.providePermissions(fileId)
             return fileId;
     }catch(error){
         const file = await this.drive.files.create({ 
@@ -50,7 +53,7 @@ export class GoogleDrive{
         })
         const fileId = file.data.id
         console.log(`File Created with ID: ${fileId}`)
-        await this.providePermissions(fileId)
+        fileId && await this.providePermissions(fileId)
         return fileId
         }
     }

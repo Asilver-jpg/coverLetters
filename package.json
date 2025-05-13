@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.ts",
-  "type": "commonjs",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node --esm index.ts",
+    "start": "node --loader ts-node/esm index.ts",
     "build": "tsc"
   },
   "author": "",
@@ -17,10 +17,12 @@
     "fs": "^0.0.1-security",
     "google-auth-library": "^9.15.1",
     "googleapis": "^144.0.0",
-    "openurl": "^1.1.1"
+    "openurl": "^1.1.1",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.8.3"
   },
   "devDependencies": {
-    "@types/node": "^20.8.6",
+    "@types/node": "^20.17.46",
     "ts-node": "^10.9.2"
   }
 }

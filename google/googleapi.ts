@@ -2,7 +2,7 @@ import 'dotenv/config'
 import {GoogleAuth} from 'google-auth-library'
 export class GoogleApis{
 
-public client;
+public client:any;
 constructor(){
      const auth = new GoogleAuth({
         keyFile: process.env.GOOGLE_APPLICATION_CREDS,

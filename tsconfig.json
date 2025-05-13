@@ -1,9 +1,14 @@
 {
   "compilerOptions": {
-    "outDir": "./built",
-    "allowJs": true,
-    "target": "es6",
-    "module": "CommonJS"
+    "target": "ES2020",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "esModuleInterop": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "noEmit":true,
+    "allowImportingTsExtensions":true,
   },
-  "files": ["index.ts", "letter.ts"]
+  "include": ["./**/*.ts"]
 }

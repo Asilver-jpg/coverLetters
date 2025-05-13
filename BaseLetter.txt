@@ -1,6 +1,6 @@
 Dear $C $R,
 
-As a software engineer with two years of experience, I am excited to apply for the $P position at $C. $D. With these points in mind, I strongly identify with $C's mission to help empower patients and I am confident that my skills and experience will benefit your company.
+As a software engineer with two years of experience, I am excited to apply for the $P position at $C. $D. With these points in mind, I strongly identify with $C's mission to $M and I am confident that my skills and experience will benefit your company.
 
 At Peer Supply, I built a custom Elasticsearch-based search engine for healthcare products, enabling users to discover inventory across different health systems. I also automated daily data imports with Airflow, ensuring inventory and approval processes remained up-to-date. Additionally, I optimized key query performance  by over 98%—cutting response times from 20 seconds to just 0.36 seconds. These experiences strengthened my ability to deliver scalable, high-performance backend systems.
 
