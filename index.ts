@@ -1,14 +1,10 @@
-import { Letter, LetterOptions } from "./letter/letter.ts";
+import { Letter } from "./letter/letter.ts";
 import {GoogleDrive} from './google/googleDrive.ts'
 import {GoogleDocs} from './google/googleDoc.ts'
 import {exec} from 'child_process'
+import {options} from './input.ts'
 
-const options: LetterOptions = {
-  company: "InfoTrack US",
-  detail:" I am deeply motivated to contribute to your team, as I am passionate about building intuitive and impactful user experiences.",
-  position: "Front-End Engineer",
-  mission:"to help lawyers enforce the law faster by automated filing.",
-};
+
 const letter = new Letter(options).createCoverLetter();
 
 async function main(){
